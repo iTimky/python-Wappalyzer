@@ -373,6 +373,15 @@ class Wappalyzer(object):
 
         return categorised_apps
 
+    def analyze_with_versions(self, webpage):
+        categorised_apps = self.analyze_with_categories(webpage)
+
+        for app_name in categorised_apps:
+            versions = self.get_versions(app_name)
+            categorised_apps[app_name]["versions"] = versions
+
+        return categorised_apps
+
 
         
 def _sort_app_versions(a, b):
